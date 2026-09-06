@@ -1,0 +1,231 @@
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #6b6b6b;
+  --line: #d8d8d8;
+  --accent: #0a6cff;
+  --warning: #8a5a00;
+  --error: #b00020;
+  --checker: #eaeaea;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e0e;
+    --fg: #ededed;
+    --muted: #8f8f8f;
+    --line: #2e2e2e;
+    --accent: #6aa8ff;
+    --warning: #e0b050;
+    --error: #ff6b6b;
+    --checker: #1c1c1c;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: 13px;
+  margin: 0 0 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+header p {
+  margin: 4px 0 0;
+}
+
+section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.warning {
+  color: var(--warning);
+}
+
+.error {
+  color: var(--error);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.row label {
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips + .chips {
+  margin-top: 8px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--fg);
+}
+
+button[aria-pressed='true'] {
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button.primary {
+  margin-top: 16px;
+  padding: 10px 20px;
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+input[type='number'] {
+  width: 96px;
+}
+
+input[type='color'] {
+  width: 44px;
+  padding: 2px;
+}
+
+input[type='range'] {
+  flex: 1;
+  min-width: 160px;
+  accent-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.guides {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.guides li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.axis {
+  width: 20px;
+  color: var(--muted);
+}
+
+.guides input {
+  flex: 1;
+  max-width: 200px;
+}
+
+.preview {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+  /* Checkerboard, so transparent output is obvious. */
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(45deg, var(--checker) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--checker) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--checker) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--checker) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+.preview canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+footer {
+  margin-top: 48px;
+}
+
+a {
+  color: var(--accent);
+}
+
+@media (max-width: 520px) {
+  main {
+    padding: 32px 16px 64px;
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "overlay-guide",
+  "version": "1.0.0",
+  "description": "Generate transparent guide overlays for video editing.",
+  "license": "MIT",
+  "author": "SENA",
+  "keywords": [
+    "overlay",
+    "guide",
+    "video",
+    "editing",
+    "png",
+    "transparent",
+    "safe-area",
+    "composition",
+    "cli"
+  ],
+  "homepage": "https://sena10x.github.io/overlay-guide/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SENA10X/overlay-guide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SENA10X/overlay-guide/issues"
+  },
+  "main": "dist/core/index.js",
+  "types": "dist/core/index.d.ts",
+  "bin": {
+    "overlay-guide": "dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:cli && npm run build:web",
+    "build:cli": "tsc -p tsconfig.build.json && node -e \"const f='dist/cli/index.js',fs=require('fs');fs.writeFileSync(f,'#!/usr/bin/env node\\n'+fs.readFileSync(f,'utf8'));fs.chmodSync(f,0o755)\"",
+    "build:web": "vite build",
+    "dev": "vite",
+    "lint": "eslint . && tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run lint && npm test && npm run build:cli"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/node": "^22.7.0",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "eslint": "^9.13.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.10.0",
+    "vite": "^5.4.9",
+    "vitest": "^2.1.3"
+  }
+}
